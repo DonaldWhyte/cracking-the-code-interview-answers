@@ -3,10 +3,11 @@ BUILD_DIR ?= build
 default: build
 
 cmake:
-    cd $(BUILD_DIR) && cmake ..
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR) && cmake ..
 
-build: cmake
-    cd $(BUILD_DIR) && make
+build:
+	cd $(BUILD_DIR) && make
 
 clean: rm $(BUILD_DIR)/* -rf
 
