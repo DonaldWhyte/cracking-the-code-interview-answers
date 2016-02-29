@@ -1,17 +1,19 @@
 #include <string>
-#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <algorithm>
+#include <iostream>
 
 bool isUnique1(const std::string& str)
 {
     // Using dynamically size hash map.
     // O(n) time complexity, O(n) spatial complexity
-    typedef std::unordered_set<char> CharSet;
-    CharSet usedChars;
+    std::unordered_set<char> usedChars;
 
-    std::string::const_iterator ch = str.begin();
+    auto ch = str.begin();
     for (; ch != str.end(); ++ch) {
-        if (counts.find(*ch) == counts.end()) {
-            counts.insert(*ch);
+        if (usedChars.find(*ch) == usedChars.end()) {
+            usedChars.insert(*ch);
         } else {
             return false;
         }
@@ -27,7 +29,7 @@ bool isUnique2(const std::string& str)
     // Only works if string characters are ASCII, and not unicode.
     int counts[256] = { 0 };
 
-    std::string::const_iterator ch = str.begin();
+    auto ch = str.begin();
     for (; ch != str.end(); ++ch) {
         int& chCount = counts[*ch];
         if (++chCount > 1) {
@@ -51,8 +53,8 @@ bool isUnique3(std::string& str)
         return true;
     }
 
-    std::string::const_iterator prevCh = str.begin();
-    std::string::const_iterator ch = prevCh + 1; // safe, because of check above
+    auto prevCh = str.begin();
+    auto ch = prevCh + 1; // safe, because of check above
 
     for (; ch != str.end(); ++prevCh, ++ch) {
         if (*prevCh == *ch) {
@@ -76,17 +78,19 @@ bool isUnique4(const std::string& str)
 
 
 
+void printBanner(const std::string& banner)
+{
+    std::cout << banner << "\n"
+              << "============================================================"
+              << std::endl;
+}
+
+
 int main(int argc, char* argv[])
 {
-    // Parse command line arguments
-    if (argc < 1) {
-        std::cout << "Usage: " << argv[0] << " <string>" << std::endl;
-        return 1;
-    }
-    std::string str = argv[1];
-
     // Define test cases
-    std::pair<std::string, bool> cases[] = [
+    typedef std::pair<std::string, bool> TestCase;
+    TestCase cases[] = {
         std::make_pair("", true),
         std::make_pair("a", true),
         std::make_pair("ab", true),
@@ -97,16 +101,53 @@ int main(int argc, char* argv[])
         std::make_pair("aba", false),
         std::make_pair("abb", false),
         std::make_pair("sdjfhuygrufge79irhtroefr", false),
-        std::make_pair("this_are-gud", true),
-    ];
-    size_t numCases = sizeof(std::pair<std::string, bool>) / sizeof(cases);
+        std::make_pair("this_are_gud", true)
+    };
+    size_t numCases = sizeof(cases) / sizeof(TestCase);
 
     // Test each implementation
+
+    printBanner("isUnique1");
     for (size_t i = 0; i < numCases; ++i) {
         bool output = isUnique1(cases[i].first);
         if (output != cases[i].second) {
-            std::cout << "Case " << i << ": "
-                      << output << " != " << cases[i].second << std::endl;
+            std::cerr << "Case " << i << " with input " << cases[i].first
+                      << ": " << output << " != " << cases[i].second
+                      << std::endl;
+        }
+    }
+
+    printBanner("isUnique2");
+    for (size_t i = 0; i < numCases; ++i) {
+        bool output = isUnique2(cases[i].first);
+        if (output != cases[i].second) {
+            std::cerr << "Case " << i << " with input " << cases[i].first
+                      << ": " << output << " != " << cases[i].second
+                      << std::endl;
+        }
+    }
+
+    printBanner("isUnique3");
+    for (size_t i = 0; i < numCases; ++i) {
+        // this one mutates the input, so it's copied to prevent other tests
+        // being affected
+        std::string copyOfInput = cases[i].first;
+
+        bool output = isUnique3(copyOfInput);
+        if (output != cases[i].second) {
+            std::cerr << "Case " << i << " with input " << copyOfInput
+                      << ": " << output << " != " << cases[i].second
+                      << std::endl;
+        }
+    }
+
+    printBanner("isUnique4");
+    for (size_t i = 0; i < numCases; ++i) {
+        bool output = isUnique4(cases[i].first);
+        if (output != cases[i].second) {
+            std::cerr << "Case " << i << " with input " << cases[i].first
+                      << ": " << output << " != " << cases[i].second
+                      << std::endl;
         }
     }
 
