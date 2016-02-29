@@ -1,8 +1,17 @@
+cmake_minimum_required(VERSION 2.8)
 
+# Common Setup
 
-# TODO: global setup
+# set build/artefact directories
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+# use C++11
+if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-std=gnu++0x)
+endif()
 
-# Individual chapters
+# Individual Chapters
 add_subdirectory(ch01-arraysstrings)
 add_subdirectory(ch02-linkedlists)
 add_subdirectory(ch03-stacksqueues)
