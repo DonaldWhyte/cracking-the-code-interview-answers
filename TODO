@@ -1,0 +1,3 @@
+* Move code interview stuff to gtest
+    * Generic test driver for all tests/inputs
+    * Use macros/template deduction for inputs/outputs

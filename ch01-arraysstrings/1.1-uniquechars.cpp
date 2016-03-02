@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
         std::make_pair("aba", false),
         std::make_pair("abb", false),
         std::make_pair("sdjfhuygrufge79irhtroefr", false),
-        std::make_pair("this_are_gud", true)
+        std::make_pair("this-are_gud", true)
     };
     size_t numCases = sizeof(cases) / sizeof(TestCase);
 
