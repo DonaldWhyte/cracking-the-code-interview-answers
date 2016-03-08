@@ -7,8 +7,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # use C++11
-if(CMAKE_COMPILER_IS_GNUCXX)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     add_definitions(-std=gnu++0x)
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    add_definitions(-std=c++11)
 endif()
 
 # Individual Chapters
