@@ -1,7 +1,16 @@
 use std::collections::HashSet;
 
-// Time Complexity:    O(n) (n O(1) insertions)
-// Spacial Complexity: O(n) (worst case: all chars are unique)
+//
+/// Time Complexity:    `O(n)` (`n * O(1)` insertions)
+/// Spacial Complexity: `O(n)` (worst case: all chars are unique)
+///
+/// # Examples
+///
+/// ```
+/// use arraysstrings::only_unique_chars;
+/// assert_eq!(only_unique_chars("donald"), false);
+/// assert_eq!(only_unique_chars("raby"), true);
+/// ```
 fn only_unique_chars(s : &str) -> bool {
     let mut found_chars = HashSet::new();
     for c in s.chars() {
@@ -14,4 +23,27 @@ fn only_unique_chars(s : &str) -> bool {
     // If this point is reached, there was only one occurrence of each char in
     // the string. Therefore, the string must only contain unique chars.
     return true;
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn empty_string() {
+        assert_eq!(only_unique_chars(""), true);
+    }
+
+    #[test]
+    fn single_char() {
+        assert_eq!(only_unique_chars("a"), true);
+    }
+
+    #[test]
+    fn two_chars_different() {
+        assert_eq!(only_unique_chars("ab"), true);
+    }
+
+    #[test]
+    fn two_chars_same() {
+        assert_eq!(only_unique_chars("aa"), true);
+    }
 }
