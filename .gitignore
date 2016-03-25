@@ -3,6 +3,8 @@
 
 # library, so we don't need this
 Cargo.lock
+# built stuff
+target/
 
 # C++
 # ---------------------------------------
