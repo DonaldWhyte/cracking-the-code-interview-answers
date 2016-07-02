@@ -1,4 +1,6 @@
-//
+///
+/// Reverse contents of an array in-place.
+///
 /// Time Complexity:    `O(n)` (`n * O(1)` swaps)
 /// Spacial Complexity: `O(1)` (reverses array in-place)
 ///
