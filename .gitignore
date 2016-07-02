@@ -1,31 +1,7 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Rust
+# ---------------------------------------
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build artefacts
-build/
+# library, so we don't need this
+Cargo.lock
+# built stuff
+target/
