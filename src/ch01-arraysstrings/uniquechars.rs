@@ -11,7 +11,7 @@ use std::collections::HashSet;
 /// assert_eq!(only_unique_chars("donald"), false);
 /// assert_eq!(only_unique_chars("raby"), true);
 /// ```
-pub fn only_unique_chars(s : &str) -> bool {
+pub fn only_unique_chars(s: &str) -> bool {
     let mut found_chars = HashSet::new();
     for c in s.chars() {
         // returns false if character is already in the set
