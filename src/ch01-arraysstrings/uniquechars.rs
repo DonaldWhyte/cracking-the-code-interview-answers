@@ -1,6 +1,9 @@
 use std::collections::HashSet;
 
-//
+///
+/// Check if a string only contains unique characters (i.e. every character
+/// in the string occurs exactly once).
+///
 /// Time Complexity:    `O(n)` (`n * O(1)` insertions)
 /// Spacial Complexity: `O(n)` (worst case: all chars are unique)
 ///

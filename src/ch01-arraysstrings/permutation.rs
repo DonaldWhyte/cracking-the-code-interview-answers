@@ -19,12 +19,47 @@ fn sort_chars(s: &str) -> Vec<char> {
     chars
 }
 
-// TODO: document with tests
-
+///
+/// Check if two given strings are a permutation of each other. Two strings are
+/// considered a permutation when they have the same characters that appear the
+/// same number of times in both strings.
+///
+/// Time Complexity:    `O(n)` (`2 * n * O(1)` insertions into HashMap)
+/// Spacial Complexity: `O(n)` (worst case: all chars are unique)
+///
+/// # Examples
+///
+/// ```
+/// use cracking_code_interview::arraystrings::permutation::is_permutation;
+/// assert!(is_permutation("", ""));
+/// assert!(is_permutation("a", "a"));
+/// assert!(!is_permutation("a", "b"));
+/// assert!(is_permutation("abcd", "dbac"));
+/// assert!(!is_permutation("abcd", "dba1"));
+/// ```
 pub fn is_permutation(a: &str, b: &str) -> bool {
     count_char_frequencies(a) == count_char_frequencies(b)
 }
 
+///
+/// Check if two given strings are a permutation of each other. Two strings are
+/// considered a permutation when they have the same characters that appear the
+/// same number of times in both strings.
+///
+/// Time Complexity:    `O(nlogn)` (due to sorting both strings)
+/// Spacial Complexity: `O(n)` (sorted strings are copies, this could be made
+///                             `O(1)` if the strings are sorted inplace)
+///
+/// # Examples
+///
+/// ```
+/// use cracking_code_interview::arraystrings::permutation::is_permutation_sort;
+/// assert!(is_permutation_sort("", ""));
+/// assert!(is_permutation_sort("a", "a"));
+/// assert!(!is_permutation_sort("a", "b"));
+/// assert!(is_permutation_sort("abcd", "dbac"));
+/// assert!(!is_permutation_sort("abcd", "dba1"));
+/// ```
 pub fn is_permutation_sort(a: &str, b: &str)  -> bool {
     sort_chars(a) == sort_chars(b)
 }
@@ -116,6 +151,3 @@ mod tests {
     }
 
 }
-
-// count frequencies (hash_map)
-// sort
