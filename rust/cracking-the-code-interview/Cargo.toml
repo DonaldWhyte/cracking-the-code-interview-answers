@@ -1,5 +1,5 @@
 [package]
-name = "cracking-the-code-interview"
+name = "cracking_code_interview"
 version = "0.1.0"
 authors = ["Donald Whyte <donaldwhyte0@gmail.com>"]
 

@@ -7,11 +7,11 @@ use std::collections::HashSet;
 /// # Examples
 ///
 /// ```
-/// use arraysstrings::only_unique_chars;
+/// use cracking_code_interview::arraystrings::uniquechars::only_unique_chars;
 /// assert_eq!(only_unique_chars("donald"), false);
 /// assert_eq!(only_unique_chars("raby"), true);
 /// ```
-fn only_unique_chars(s : &str) -> bool {
+pub fn only_unique_chars(s : &str) -> bool {
     let mut found_chars = HashSet::new();
     for c in s.chars() {
         // returns false if character is already in the set
@@ -27,6 +27,8 @@ fn only_unique_chars(s : &str) -> bool {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn empty_string() {
         assert_eq!(only_unique_chars(""), true);
@@ -44,6 +46,16 @@ mod tests {
 
     #[test]
     fn two_chars_same() {
-        assert_eq!(only_unique_chars("aa"), true);
+        assert_eq!(only_unique_chars("aa"), false);
+    }
+
+    #[test]
+    fn many_chars_different() {
+        assert_eq!(only_unique_chars("abcdefghijkl"), true  );
+    }
+
+    #[test]
+    fn many_chars_same() {
+        assert_eq!(only_unique_chars("aabaaa"), false);
     }
 }
