@@ -4,4 +4,5 @@
 pub mod arraystrings {
     pub mod uniquechars;
     pub mod reverse;
+    pub mod permutation;
 }
